@@ -1,0 +1,16 @@
+git config --global user.name "Carmel Shvartzman"
+git config --global user.email "Carmel.asnet@gmail.com"
+git config --global alias.lg "log --oneline --decorate --all --graph"
+git config --global alias.s "status -s"
+
+git init
+/////////////  en cas d'erreur, si quelque chose a été supprimé, retour au dernier COMMIT effectué:
+git checkout -- . 
+
+git s       // status
+
+git add .
+git commit "1.0.0.0"
+git push master
+
+

@@ -10,7 +10,7 @@ git checkout -- .
 git s       // status
 
 git add .
-git commit "1.0.0.0"
+git commit -m "1.0.0.0"
 git push master
 
 

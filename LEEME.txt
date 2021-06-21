@@ -1,9 +1,104 @@
 PASOS PARA CONVERTIR HTML A ANGULAR:
 
+EXTENSIONS
+Json to TS
+
+PACKAGES FIREBASE ////////////////////////////////////////////////////////////////////////////////////////
+//// la instalacion de Firebase fue problematica: NO INSTALAR angularfire2 !!!!! is no longer maintained!!!
+////  seguir los pasos en el sitio oficial!! : https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md
+//  GOOD TUTORIAL:  https://www.youtube.com/watch?v=R7KLxgrVhEg
+// ejemplo: (no actualizado) https://stackblitz.com/edit/angular-fire-start?file=app%2Fapp.module.ts
+npm install -g @angular/cli
+ng new <project-name>
+ng add @angular/fire
+
+/// APP.MODULE:
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+//import { environment } from '../environments/environment';
+
+/// ESTO SE COPIA DE : https://console.firebase.google.com/ >>> ir a "Add a Project" >> "Project Overview" >> "Project Settings"
+const config = {
+ apiKey: "AIzaSyB-ZN1Q_-ls0RHIKJMgJyPUVvY_fdSGQoo",
+    authDomain: "portfolioapp-10aa9.firebaseapp.com",
+    databaseURL: "https://portfolioapp-10aa9-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "portfolioapp-10aa9",
+    storageBucket: "portfolioapp-10aa9.appspot.com",
+    messagingSenderId: "703033904116",
+    appId: "1:703033904116:web:85157f2fbde5225b72c7a1",
+    measurementId: "G-SFWMZWDW65"
+};
+
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule
+  ],
+
+
+
+En este momento, hacer ng b y verificar la instalacion:
+ng b
+ng s -o 
+
+(Y SI NO COMPILA:
+npm uninstall @angular/fire
+npm uninstall angularfire2
+npm install @angular/fire@latest
+BORRAR TODA LA CARPETA NODE_MODULES + PACKAGE-LOCK.Json
+npm i
+)
+
+(ESTA ES LA CONFIGURACION QUE SI ME FUNCIONO:
+"dependencies": {
+    "@angular/animations": "~12.0.3",
+    "@angular/common": "~12.0.3",
+    "@angular/compiler": "~12.0.3",
+    "@angular/core": "~12.0.3",
+    "@angular/fire": "^6.1.5",
+    "@angular/forms": "~12.0.3",
+    "@angular/platform-browser": "~12.0.3",
+    "@angular/platform-browser-dynamic": "~12.0.3",
+    "@angular/router": "~12.0.3",
+    "animate.css": "^4.1.1",
+    "firebase": "^8.6.7",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.1.0",
+    "zone.js": "~0.11.4"
+  },
+  
+  )
+
+/// APP.COMPONENT.TS : (o todo otro component)
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database';
+ teams:any[] = [];
+constructor(private svc: InfoPaginaService,private db:AngularFireDatabase) {
+   db.list('/team').snapshotChanges().subscribe(res => {
+      res.forEach(t => {
+        const team = t.payload.toJSON(); console.log(t.payload.toJSON());        
+        this.teams.push(team);
+      });
+    });
+}
+/// APP.COMPONENT.HTML
+<ul>
+    <li class="text" *ngFor="let item of teams ">
+      {{item.title}}
+    </li>
+  </ul>
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////FIREBASE
+
 copiar todos los ASSETS del TEMPLATE  a la carpeta ASSETS que hay en SRC de angular
 copiar todos los LINK tags del HEAD del file INDEX del TEMPLATE , al file INDEX de ANGULAR
 copiar todos los SCRIPT tags del BODY del file INDEX del TEMPLATE , al file INDEX de ANGULAR
 copiar la CLASS del BODY de HTML a ANGULAR
+(hacer GIT COMMIT -M "1.0.0.X" despues de cada cambio importante. [Hacer ROLLBACK si es necesario usando "GIT CHECKOUT -- . " ])
 
 1) HEADER
 ng g c  shared/header --skip-tests -m app -d
@@ -19,6 +114,40 @@ copiar el FOOTER del file HTML al COMPONENT "Footer"
 
 3) PAGES:
 ng g c pages/portfolio  --skip-tests -m app -d
+ng g c pages/about --skip-tests  -m app -d
+ng g c pages/item --skip-tests -m app -d
+
+copiar la SECTION principal (o el DIV principal) de cada page a su respectiva page
+
+4) ROUTES:
+Crear rutas en app-routing:
+{ path: "", component: PortfolioComponent },
+ ..........
+{ path: "**", pathMatch: "full", redirectTo: "" }
+
+agregar <router-outlet> 
+
+5) MENU:
+modificar LINKS en MENU a fin de usar ROUTES
+usar: routerLink
+
+6) CREAR SERVICE e INTERFACE:
+ng g i model/infoDTO  -d
+ng g s services/svc --skip-tests -d
+
+use import { HttpClient } from '@angular/common/http';
+
+
+7) ADD ANIMATIONS:
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+.animate__animated{
+    animation-duration: 3s;
+}
+
+
+
+
+
 
 
 

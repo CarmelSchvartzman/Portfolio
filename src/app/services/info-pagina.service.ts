@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InfoDTO } from '../model/info-dto';
-
+import { AngularFireDatabase } from '@angular/fire/database';
 
 
 
@@ -13,8 +13,12 @@ export class InfoPaginaService {
   data: InfoDTO = {};
   team: any = {};
   loaded = false;
+  title = 'PORTFOLIOAPP'; 
+  teams: any[] = [];
 
-  constructor(private http: HttpClient) {
+
+
+  constructor(private http: HttpClient, private db: AngularFireDatabase) {
     console.warn('Salut des des services');
     this.http.get('assets/data/data-pagina.json').pipe().subscribe((data: InfoDTO) => {
       this.loaded = true;
@@ -32,13 +36,14 @@ export class InfoPaginaService {
   }
 
   private GetTeam() {
-    // this.http.get("https://portfolioapp-10aa9-default-rtdb.europe-west1.firebasedatabase.app/team")
-    //   .subscribe(d => {
-    //     this.team = d;
-
-    //   }
-
-    //   );
+   
+    this.db.list('/team').snapshotChanges().subscribe(res => {
+      res.forEach(t => {
+        const team = t.payload.toJSON(); console.log(t.payload.toJSON());        
+        this.teams.push(team);
+      });
+    });
+    
   }
 
 

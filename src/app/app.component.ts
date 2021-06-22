@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { InfoPaginaService } from './services/info-pagina.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+
 import { AngularFireDatabase } from '@angular/fire/database';
 
 //const cors = require('cors')({origin: true});
@@ -11,19 +10,15 @@ import { AngularFireDatabase } from '@angular/fire/database';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PORTFOLIOAPP';
-  items: Observable<any[]>;
+  title = 'PORTFOLIOAPP';   
   teams: any[] = [];
 
-  constructor(private svc: InfoPaginaService, private firestore: AngularFirestore, private db: AngularFireDatabase) {
-
-
-    this.items = firestore.collection('/team').valueChanges();
-
+  constructor(private svc: InfoPaginaService, private db: AngularFireDatabase) {
+   
 
     db.list('/team').snapshotChanges().subscribe(res => {
       res.forEach(t => {
-        const team = t.payload.toJSON(); console.log(t.payload.toJSON());        
+        const team = t.payload.toJSON(); //console.log(t.payload.toJSON());        
         this.teams.push(team);
       });
     });

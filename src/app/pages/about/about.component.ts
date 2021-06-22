@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoPaginaService } from 'src/app/services/info-pagina.service';
 
 @Component({
   selector: 'app-about',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
-  constructor() { }
+  teams: any[] = [];
+  constructor(private svc: InfoPaginaService) { //console.warn("AboutComponent CTOR")
+  }
 
   ngOnInit(): void {
+
+    this.svc.GetTeam().subscribe(data => {
+      data.forEach(team => {
+        this.teams.unshift(team.payload.toJSON());
+      });
+    });
+
+
   }
 
 }

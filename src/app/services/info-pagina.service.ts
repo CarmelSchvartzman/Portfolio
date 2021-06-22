@@ -11,11 +11,9 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class InfoPaginaService {
   data: InfoDTO = {};
-  team: any = {};
+  
   loaded = false;
-  title = 'PORTFOLIOAPP'; 
-  teams: any[] = [];
-
+  title = 'PORTFOLIOAPP';   
 
 
   constructor(private http: HttpClient, private db: AngularFireDatabase) {
@@ -27,7 +25,7 @@ export class InfoPaginaService {
       console.warn(`Msg SVC === > ${this.data.email}`);
 
     })
-    this.GetTeam();
+    
   }
 
 
@@ -35,14 +33,8 @@ export class InfoPaginaService {
     return this.http.get('assets/data/data-pagina.json');
   }
 
-  private GetTeam() {
-   
-    this.db.list('/team').snapshotChanges().subscribe(res => {
-      res.forEach(t => {
-        const team = t.payload.toJSON(); console.log(t.payload.toJSON());        
-        this.teams.push(team);
-      });
-    });
+  GetTeam() {   
+    return this.db.list('/team').snapshotChanges();  
     
   }
 

@@ -18,6 +18,7 @@ import { ItemComponent } from './pages/item/item.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { HomeComponent } from './pages/home/home.component';
 //import { environment } from '../environments/environment';
 
 
@@ -39,7 +40,8 @@ const config = {
     FooterComponent,
     PortfolioComponent,
     AboutComponent,
-    ItemComponent
+    ItemComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

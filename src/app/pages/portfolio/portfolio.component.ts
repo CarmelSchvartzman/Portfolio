@@ -8,7 +8,7 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-  prods: any[] = [];
+  prods: ProdDto[] = [];
   constructor(private svc: ProductsService) { }
 
   ngOnInit(): void {

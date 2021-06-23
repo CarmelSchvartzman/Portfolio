@@ -3,6 +3,13 @@ PASOS PARA CONVERTIR HTML A ANGULAR:
 EXTENSIONS
 Json to TS
 
+GIT
+git init
+git add .
+git commit -m "1.0.0.1"
+git status
+git checkout -- .       //  ROLLBACK!!!
+
 PACKAGES FIREBASE ////////////////////////////////////////////////////////////////////////////////////////
 //// la instalacion de Firebase fue problematica: NO INSTALAR angularfire2 !!!!! is no longer maintained!!!
 ////  seguir los pasos en el sitio oficial!! : https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md

@@ -19,4 +19,8 @@ export class ProductsService {
   GetIx(): Observable<any[]> {
     return this.svc.list('/productos_idx').snapshotChanges();
   }
+
+  GetProductById(id: number): Observable<any> {
+    return this.svc.object(`/productos/prod-${id}`).snapshotChanges();
+  }
 }

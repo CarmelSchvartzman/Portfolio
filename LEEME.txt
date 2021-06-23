@@ -91,6 +91,11 @@ constructor(private svc: InfoPaginaService,private db:AngularFireDatabase) {
         this.teams.push(team);
       });
     });
+
+
+   db.object(`/productos/prod-${id}`).snapshotChanges().subscribe(i => {
+          this.item = i.payload.toJSON();
+   }
 }
 /// APP.COMPONENT.HTML
 <ul>

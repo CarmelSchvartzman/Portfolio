@@ -169,7 +169,10 @@ Search(val: string) {
 
 SearchProduct(term: string) {
     this.filteredProducts = this.products.filter(f => {
-      return f == term;
+      
+      return f.producto.toLowerCase().includes(term.toLowerCase())
+        ||
+        f.resumen.toLowerCase().includes(term.toLowerCase());
     });
 
 

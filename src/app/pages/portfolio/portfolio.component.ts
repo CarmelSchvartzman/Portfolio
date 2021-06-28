@@ -12,12 +12,13 @@ export class PortfolioComponent implements OnInit {
   constructor(private svc: ProductsService) { }
 
   ngOnInit(): void {
-    this.svc.GetProducts().subscribe(p => {
-      p.forEach(item => {
-        const i = item.payload.toJSON();
-        this.prods.unshift(i);
-      });
-    });
+    this.prods = this.svc.products;
+    // this.svc.GetProducts().subscribe(p => {
+    //   p.forEach(item => {
+    //     const i = item.payload.toJSON();
+    //     this.prods.unshift(i);
+    //   });
+    // });
   }
 
 }

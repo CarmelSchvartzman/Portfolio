@@ -14,9 +14,10 @@ export class SearchComponent implements OnInit {
   constructor(private ar: ActivatedRoute, private svc: ProductsService) { }
 
   ngOnInit(): void {
-    this.ar.params.subscribe((v) => {console.warn(`INSIDE SEARCH : ${v["val"]} !!`);
-      this.value = v['val']; console.warn(v);
+    this.ar.params.subscribe((v) => {//console.warn(`INSIDE SEARCH : ${v["val"]} !!`);
+      this.value = v['val']; //console.warn(v);
       this.svc.SearchProduct(this.value);
+      this.prods = this.svc.filteredProducts;
     });
   }
 

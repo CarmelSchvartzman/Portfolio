@@ -6,6 +6,7 @@ export interface ProdDto
   img1: string;
   img2: string;
   img3: string;
+  ix: number;
   producto: string;
   resumen: string;
   subtitulo1: string;

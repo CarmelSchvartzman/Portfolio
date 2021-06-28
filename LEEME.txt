@@ -157,6 +157,21 @@ use import { HttpClient } from '@angular/common/http';
 }
 
 
+8) ADD SEARCH FUNCTIONALITY:
+ng g c pages/search -s -t -m app --skip-tests  -d
+ <input  #searchbox type="text" placeholder="Search ..." 
+          (keyup.enter)="Search(searchbox.value)" >
+
+Search(val: string) {     
+    if (val.length > 0) {
+      this.route.navigate(["/search" , val]);     
+    }
+
+SearchProduct(term: string) {
+    this.filteredProducts = this.products.filter(f => {
+      return f == term;
+    });
+
 
 
 

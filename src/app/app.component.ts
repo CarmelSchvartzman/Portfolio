@@ -16,12 +16,12 @@ export class AppComponent {
   constructor(private svc: InfoPaginaService, private db: AngularFireDatabase) {
    
 
-    db.list('/team').snapshotChanges().subscribe(res => {
-      res.forEach(t => {
-        const team = t.payload.toJSON(); //console.log(t.payload.toJSON());        
-        this.teams.push(team);
-      });
-    });
+    // db.list('/team').snapshotChanges().subscribe(res => {
+    //   res.forEach(t => {
+    //     const team = t.payload.toJSON(); //console.log(t.payload.toJSON());        
+    //     this.teams.push(team);
+    //   });
+    // });
 
 
 

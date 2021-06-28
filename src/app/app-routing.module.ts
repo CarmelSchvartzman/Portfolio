@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ItemComponent } from './pages/item/item.component';
 import { PortfolioComponent } from './pages/portfolio/portfolio.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "portfolio", component: PortfolioComponent },
   { path: "about", component: AboutComponent },
   { path: "item/:id", component: ItemComponent },
+  { path: "search/:val", component: SearchComponent },
   { path: "**", pathMatch: "full", redirectTo: "home" }
 ];
 

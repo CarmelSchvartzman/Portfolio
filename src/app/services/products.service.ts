@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class ProductsService {
   products: any[] = [];
+  filteredProducts: any[] = [];
   constructor(private svc: AngularFireDatabase) {
-
+    this.GetProducts().subscribe(p=>{
+      
+    });
   }
 
   GetProducts(): Observable<any[]> {
@@ -22,5 +25,13 @@ export class ProductsService {
 
   GetProductById(id: number): Observable<any> {
     return this.svc.object(`/productos/prod-${id}`).snapshotChanges();
+  }
+
+  SearchProduct(term: string) {console.warn(`INSIDE SVC : ${term} !!`);
+    this.filteredProducts = this.products.filter(f => {
+      return f == term;
+    });
+    console.warn(this.products);
+    console.warn(this.filteredProducts);
   }
 }

@@ -183,8 +183,19 @@ Para testear la app en PROD , se activa el server asi: se va a la carpeta de la 
 y se hace : ng http-server -o
 
 
+10) DEPLOYMENT TO GITHUB PAGES:     ---  esta App esta en https://carmelschvartzman.github.io/Portfolio/#/home y https://github.com/CarmelSchvartzman/Portfolio
+Ante todo, hay que hacer ng b --prod , y mover la App que esta dentro de "dist", a la carpeta principal de la App (donde esta packages.json), y borrar "dist":
+Luego hay que renombrar esta carpeta con la App de PROD, al nombre "docs":
+Luego, se crea un REPOSITORIO en GitHub, en este caso "Portfolio":
+git status
+git add .
+git commit -m "PRE-PROD"
+git remote add origin https://github.com/CarmelSchvartzman/Portfolio.git
+git push -u origin master
 
+Dentro de la carpeta "docs", se borra esto de Index.html : <!-- <base href="/"> -->
 
+Despues de esto, se va a GitHub, y dentro del REPOSITORY se abre SETTINGS >>> GitHub Pages >>> Source >>>> (y se fija la source a "MASTER/DOCS")
 
 
 

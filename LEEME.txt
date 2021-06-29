@@ -176,6 +176,15 @@ SearchProduct(term: string) {
     });
 
 
+9) TEST PRE-PRODUCTION:
+ng b --prod
+npm i -g http-server <==== SERVER
+Para testear la app en PROD , se activa el server asi: se va a la carpeta de la App dentro de "dist", se hace CMD en CTL-L:
+y se hace : ng http-server -o
+
+
+
+
 
 
 

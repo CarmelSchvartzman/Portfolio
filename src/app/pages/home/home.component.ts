@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
         const ix = i.payload.toJSON();
         this.prods.unshift(ix);
       });
-      setTimeout(() => (this.loading = false), 2000);
+      setTimeout(() => (this.loading = false), 1000);
 
     });
     this.loading = true;

@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './pages/search/search.component';
+import { BlogsComponent } from './pages/blogs/blogs.component';
 //import { environment } from '../environments/environment';
 
 
@@ -43,7 +44,8 @@ const config = {
     AboutComponent,
     ItemComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    BlogsComponent
   ],
   imports: [
     BrowserModule,
